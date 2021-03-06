@@ -30,7 +30,7 @@ const App = () => {
     <div className="App">
       <Route path="/" exact>
         <NavigationBar />
-        <List list={list} />
+        <List list={list} setList={setList} />
       </Route>
 
       <Route path="/submit" exact>

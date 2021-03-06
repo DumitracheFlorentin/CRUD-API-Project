@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 // Import bootstrap
 import { Table, Container, Button } from "react-bootstrap";
 
-const List = ({ list }) => {
+const List = ({ list, setList }) => {
+  const deletePostHandler = (id) => {
+    axios.delete(`http://localhost:5000/api/posts/${id}`).then(() => {
+      console.log("Done!");
+    });
+  };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/posts")
+      .then((posts) => {
+        setList(posts.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, [list]);
+
   return (
     <Container>
       <Table striped bordered hover className="mt-5">
@@ -14,6 +32,7 @@ const List = ({ list }) => {
             <th>Author</th>
             <th>Price</th>
             <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -26,9 +45,12 @@ const List = ({ list }) => {
                 <td>{value.author}</td>
                 <td>{value.price}</td>
                 <td>
-                  <Link to={editPostURL} className="mr-2">
-                    Edit the post
-                  </Link>
+                  <Link to={editPostURL}>Edit</Link>
+                </td>
+                <td>
+                  <Button onClick={() => deletePostHandler(value._id)}>
+                    Delete
+                  </Button>
                 </td>
               </tr>
             );
