@@ -2,7 +2,7 @@
 
 ## Description
 
-Creating a simple MERN App - (MongoDB, Express.js, React.js, Node.js). The purpose was to learn more than I knew before about HTTP status, http request methods and the connection between server and client side.
+Creating a simple MERN App - (MongoDB, Express.js, React.js, Node.js). The purpose was to learn more than I knew before about HTTP status, HTTP request methods, bring data with Axios, the connection between server and client side.
 
 ## How it looks
 
